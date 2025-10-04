@@ -294,6 +294,7 @@ static int xerrordummy(Display *dpy, XErrorEvent *ee);
 static int xerrorstart(Display *dpy, XErrorEvent *ee);
 static void xrdb(const Arg *arg);
 static void zoom(const Arg *arg);
+static void centerfixed(const Arg *arg);
 
 static pid_t getparentprocess(pid_t p);
 static int isdescprocess(pid_t p, pid_t c);
@@ -1308,6 +1309,7 @@ killclient(const Arg *arg)
     }
 }
 
+
 void
 loadxrdb(void)
 {
@@ -1701,6 +1703,30 @@ resizemouse(const Arg *arg)
 }
 
 void
+centerfixed(const Arg *arg) {
+    if (!selmon->sel)
+        return;
+
+    Client *c = selmon->sel;
+
+    /* force tiled */
+    if (c->isfloating)
+        togglefloating(NULL); // make tiled, if it was floating
+    /* restore the base amount */
+     int w = (c->basew > 0) ? c->basew : c->w;
+    int h = (c->baseh > 0) ? c->baseh : c->h;
+
+    /* center */
+    c->x = selmon->wx + (selmon->ww - w) / 2;
+    c->y = selmon->wy + (selmon->wh - h) / 2;
+    c->w = w;
+    c->h = h;
+
+    resize(c, c->x, c->y, c->w, c->h, 0);
+    arrange(c->mon);
+}
+
+void
 restack(Monitor *m)
 {
 	Client *c;
@@ -1732,8 +1758,8 @@ run(void)
 	/* main event loop */
 	XSync(dpy, False); /* all pending X11 requests sent to X server */
 	while (running && !XNextEvent(dpy, &ev)) /* keep running while dwm is supposed to be running, and keep handling events from X */
-		if (handler[ev.type]) /* check if there's a handler for the event type */
-			handler[ev.type](&ev); /* call that handler and pass it the event data */
+        if (handler[ev.type]) /* check if there's a handler for the event type */
+		handler[ev.type](&ev); /* call that handler and pass it the event data */
 }
 
 void
