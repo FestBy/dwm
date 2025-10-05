@@ -1,5 +1,5 @@
-## dwm - dynamic window manager - bread's build
-![my build](bread_dwm.png)
+## dwm - dynamic window manager - bread's build and FestBy's fork
+![my build](festby_dwm.png)
 comes with no guarantees or warranties <sub>(this means things may not work as expected, or at all)</sub> :^)
 
 note: I'd highly recommend setting up your own build! using mine or anyone else's is a starting point, but patching dwm manually not only allows for precise customization, but it will also allow you to learn how your WM works.
@@ -28,7 +28,7 @@ some occasional modification here and there;
 
 ## installation, setup:
 ```
-git clone https://github.com/BreadOnPenguins/dwm
+git clone https://github.com/FestBy/dwm
 cd dwm
 sudo make clean install
 ```
@@ -42,8 +42,7 @@ sudo make clean install
   - ```mod + shift + backspace``` to fully exit
 
 
-I use [dwmblocks](https://github.com/torrinfail/dwmblocks) for my statusbar ([bar scripts](https://github.com/BreadOnPenguins/scripts)), included in ```~/.xprofile``` with ```exec dwmblocks```.
-If you intend to use another statusbar, [modify dwm appropriately](https://dwm.suckless.org/patches/anybar/) :)
+I use [dwmblocks-async](https://github.com/UtkarshVerma/dwmblocks-async) for my statusbar (my [bar scripts](https://github.com/FestBy/scripts), and BreadOnPenguins [bar scripts](https://github.com/BreadOnPenguins/scripts)), with ```exec dwmblocks``` in ```~/xinitrc```.
 
 
 ## colors, other stuff:
@@ -79,3 +78,6 @@ I use [slock](https://tools.suckless.org/slock/) for a lockscreen (build will be
 My config has a few glyphs used cosmetically; for those to render properly, install a [font with extra glyphs](https://www.nerdfonts.com/#home).
 
 #### The [GNU Quilt](https://savannah.nongnu.org/projects/quilt/quilt/) system (used by Debian to manage patches in source packages) can be used to easily manage, apply, and reverse suckless software patches, and [this guide](https://codeberg.org/mok0/suckless-patches) (including ```suckless-patches.py```) can help download and prepare patches for use with Quilt. Thanks to [mok0](https://github.com/BreadOnPenguins/dwm/issues/1) for sharing!
+
+
+Thank you [BreadOnPenguins](https://www.youtube.com/@BreadOnPenguins) for your awesome build!
