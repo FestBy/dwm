@@ -258,9 +258,9 @@ static const Key keys[] = {
 
 
 /* Fn bindings: set-sink-volume & brightness */
-    { 0, XF86XK_AudioMute,             spawn,       {.v = (const char*[]){ "pactl", "set-sink-mute", "@DEFAULT_SINK@", "toggle", NULL } } },
-    { 0, XF86XK_AudioLowerVolume,      spawn,       {.v = (const char*[]){ "pactl", "set-sink-volume", "@DEFAULT_SINK@", "-5%", NULL } } },
-    { 0, XF86XK_AudioRaiseVolume,      spawn,       {.v = (const char*[]){ "pactl", "set-sink-volume", "@DEFAULT_SINK@", "+5%", NULL } } },
+    { 0, XF86XK_AudioMute,             spawn,       SHCMD("pactl set-sink-mute @DEFAULT_SINK@ toggle && pkill -RTMIN+4 dwmblocks") },
+    { 0, XF86XK_AudioLowerVolume,      spawn,       SHCMD("pactl set-sink-volume @DEFAULT_SINK@ -5% && pkill -RTMIN+4 dwmblocks") },
+    { 0, XF86XK_AudioRaiseVolume,      spawn,       SHCMD("pactl set-sink-volume @DEFAULT_SINK@ +5% && pkill -RTMIN+4 dwmblocks") },
     { 0, XF86XK_MonBrightnessUp,       spawn,       SHCMD("brightnessctl set +5% && pkill -RTMIN+5 dwmblocks") },
     { 0, XF86XK_MonBrightnessDown,     spawn,       SHCMD("brightnessctl set 5%- && pkill -RTMIN+5 dwmblocks") },
 
